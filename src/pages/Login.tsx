@@ -4,12 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("agent");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +28,14 @@ const Login = () => {
     // Demo login - just check if fields are filled
     localStorage.setItem("isAuthenticated", "true");
     localStorage.setItem("userEmail", email);
+    localStorage.setItem("userRole", role);
+
     toast.success("Login successful");
-    navigate("/store-owner");
+    if (role === "store-owner") {
+      navigate("/store-owner");
+    } else {
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -29,6 +43,18 @@ const Login = () => {
       <Card className="w-full max-w-md p-6 space-y-6">
         <h1 className="text-2xl font-bold text-center">Login to StockGuard</h1>
         <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <Label htmlFor="role">Role</Label>
+            <Select value={role} onValueChange={setRole}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select your role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="agent">Agent</SelectItem>
+                <SelectItem value="store-owner">Store Owner</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <div>
             <Label htmlFor="email">Email</Label>
             <Input

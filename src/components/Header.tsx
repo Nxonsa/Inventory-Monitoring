@@ -1,7 +1,16 @@
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const userRole = localStorage.getItem("userRole");
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -14,14 +23,32 @@ const Header = () => {
           </h1>
         </div>
         <nav className="hidden lg:flex items-center space-x-6">
-          <Button variant="ghost" className="text-sm">
-            Dashboard
-          </Button>
-          <Button variant="ghost" className="text-sm">
-            Scanner
-          </Button>
-          <Button variant="ghost" className="text-sm">
+          {userRole === "store-owner" ? (
+            <Button
+              variant="ghost"
+              className="text-sm"
+              onClick={() => navigate("/store-owner")}
+            >
+              Manage Stores
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              className="text-sm"
+              onClick={() => navigate("/dashboard")}
+            >
+              Dashboard
+            </Button>
+          )}
+          <Button
+            variant="ghost"
+            className="text-sm"
+            onClick={() => navigate("/profile")}
+          >
             Profile
+          </Button>
+          <Button variant="ghost" className="text-sm" onClick={handleLogout}>
+            Logout
           </Button>
         </nav>
       </div>
