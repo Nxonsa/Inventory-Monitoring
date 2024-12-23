@@ -31,14 +31,31 @@ const Header = () => {
             >
               Manage Stores
             </Button>
-          ) : (
+          ) : userRole === "admin" ? (
             <Button
               variant="ghost"
               className="text-sm"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/admin")}
             >
-              Dashboard
+              Admin Dashboard
             </Button>
+          ) : (
+            <>
+              <Button
+                variant="ghost"
+                className="text-sm"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard
+              </Button>
+              <Button
+                variant="ghost"
+                className="text-sm"
+                onClick={() => navigate("/scanner")}
+              >
+                Scanner
+              </Button>
+            </>
           )}
           <Button
             variant="ghost"

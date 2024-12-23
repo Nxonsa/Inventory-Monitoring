@@ -8,7 +8,7 @@ interface StoreHistory {
   id: string;
   name: string;
   address: string;
-  status: "completed" | "pending";
+  status: "completed" | "pending" | "reported";
   date: string;
 }
 
@@ -28,6 +28,13 @@ const Dashboard = () => {
       status: "pending",
       date: "2024-02-21",
     },
+    {
+      id: "3",
+      name: "Store C",
+      address: "789 Pine St, City, State",
+      status: "reported",
+      date: "2024-02-22",
+    },
   ]);
 
   return (
@@ -40,6 +47,7 @@ const Dashboard = () => {
           <TabsList>
             <TabsTrigger value="pending">Pending Stores</TabsTrigger>
             <TabsTrigger value="completed">Completed Stores</TabsTrigger>
+            <TabsTrigger value="reported">Reported Stores</TabsTrigger>
           </TabsList>
 
           <TabsContent value="pending">
@@ -77,7 +85,28 @@ const Dashboard = () => {
                           Completed: {store.date}
                         </p>
                       </div>
-                      <Badge variant="success">Completed</Badge>
+                      <Badge variant="secondary">Completed</Badge>
+                    </div>
+                  </Card>
+                ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="reported">
+            <div className="grid gap-4">
+              {storeHistory
+                .filter((store) => store.status === "reported")
+                .map((store) => (
+                  <Card key={store.id} className="p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-semibold">{store.name}</h3>
+                        <p className="text-sm text-gray-600">{store.address}</p>
+                        <p className="text-sm text-gray-500">
+                          Reported: {store.date}
+                        </p>
+                      </div>
+                      <Badge variant="destructive">Reported</Badge>
                     </div>
                   </Card>
                 ))}
