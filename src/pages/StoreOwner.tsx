@@ -17,6 +17,7 @@ interface Store {
   city: string;
   state: string;
   zipCode: string;
+  idNumber: string;
   qrCode?: string;
 }
 
@@ -32,6 +33,7 @@ const StoreOwner = () => {
     city: "",
     state: "",
     zipCode: "",
+    idNumber: "",
   });
 
   useEffect(() => {
@@ -200,6 +202,16 @@ const StoreOwner = () => {
                 placeholder="Enter ZIP code"
               />
             </div>
+            <div>
+              <Label htmlFor="idNumber">ID/Passport Number</Label>
+              <Input
+                id="idNumber"
+                name="idNumber"
+                value={newStore.idNumber}
+                onChange={handleInputChange}
+                placeholder="Enter ID or Passport number"
+              />
+            </div>
           </div>
           <Button onClick={addStore} className="mt-6">
             Add Store
@@ -213,6 +225,7 @@ const StoreOwner = () => {
                 <h3 className="text-lg font-semibold">{store.name}</h3>
                 <div className="text-sm text-gray-600 space-y-1">
                   <p><span className="font-medium">Owner:</span> {store.ownerName}</p>
+                  <p><span className="font-medium">ID/Passport:</span> {store.idNumber}</p>
                   <p><span className="font-medium">Email:</span> {store.email}</p>
                   <p><span className="font-medium">Phone:</span> {store.phone}</p>
                   <p><span className="font-medium">Address:</span> {store.address}</p>
