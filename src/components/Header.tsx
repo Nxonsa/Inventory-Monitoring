@@ -1,6 +1,12 @@
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,7 +27,43 @@ const Header = () => {
           <h1 className="text-xl font-semibold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             StockGuard
           </h1>
+          
+          {/* Demo Quick Access Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-4">
+                Demo Quick Access <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem onClick={() => navigate("/")}>
+                Home
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/store-owner")}>
+                Store Owner
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                Dashboard
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/profile")}>
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/scanner")}>
+                Scanner
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/admin")}>
+                Admin
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/login")}>
+                Login
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/signup")}>
+                Signup
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
+        
         <nav className="hidden lg:flex items-center space-x-6">
           {userRole === "store-owner" ? (
             <Button
