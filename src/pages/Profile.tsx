@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -59,6 +60,7 @@ const Profile = () => {
           </div>
         </Card>
       </main>
+      <Footer />
     </div>
   );
 };
