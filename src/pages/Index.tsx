@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Scanner from "@/components/Scanner";
 import StockCard from "@/components/StockCard";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   const stockItems = [
@@ -45,7 +44,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
