@@ -20,18 +20,34 @@ const Header = () => {
 
   const AgentNavItems = () => (
     <>
-      <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+      <Button
+        variant="ghost"
+        className="w-full justify-start"
+        onClick={() => navigate("/dashboard")}
+      >
         Dashboard
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => navigate("/scanner")}>
+      </Button>
+      <Button
+        variant="ghost"
+        className="w-full justify-start"
+        onClick={() => navigate("/scanner")}
+      >
         Scanner
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => navigate("/profile")}>
+      </Button>
+      <Button
+        variant="ghost"
+        className="w-full justify-start"
+        onClick={() => navigate("/profile")}
+      >
         Profile
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={handleLogout}>
+      </Button>
+      <Button
+        variant="ghost"
+        className="w-full justify-start"
+        onClick={handleLogout}
+      >
         Logout
-      </DropdownMenuItem>
+      </Button>
     </>
   );
 
@@ -47,11 +63,7 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-64">
               <nav className="flex flex-col space-y-2 mt-6">
-                <DropdownMenu>
-                  <DropdownMenuContent className="w-full">
-                    <AgentNavItems />
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <AgentNavItems />
               </nav>
             </SheetContent>
           </Sheet>
