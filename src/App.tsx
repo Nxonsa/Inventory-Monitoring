@@ -11,13 +11,20 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Scanner from "./pages/Scanner";
 import Admin from "./pages/Admin";
+import PinVerification from "./pages/PinVerification";
 
 const queryClient = new QueryClient();
 
 // Protected Route wrapper component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
-  const userRole = localStorage.getItem("userRole");
+  const isPinVerified = localStorage.getItem("pinVerified");
+  const currentPath = window.location.pathname;
+
+  if (!isPinVerified) {
+    localStorage.setItem("intendedPath", currentPath);
+    return <Navigate to="/pin" />;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
@@ -33,6 +40,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/pin" element={<PinVerification />} />
           <Route
             path="/"
             element={
